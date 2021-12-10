@@ -22,6 +22,7 @@ int main()
     if (valid)
     {
         ch = getchar();
+		return 0;
     }
 
     valid = valid && (ch == '.' || ch == '\n');
