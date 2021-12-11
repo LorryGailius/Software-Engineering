@@ -30,3 +30,6 @@
 /Course 1/Procedular Programming/Educational_Tasks/**/*.exe
 /Course 1/Procedular Programming/Educational_Tasks/**/*.out
 /Course 1/Procedular Programming/Educational_Tasks/**/*.app
+
+# Output Files
+/Course 1/Procedular Programming/Educational_Tasks/**/*.txt
