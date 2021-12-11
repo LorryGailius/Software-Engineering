@@ -6,7 +6,7 @@
 int main()
 {
     int Num = 0, Length = 0, Valid = 1;
-    char Str, Dec[1000] = {0}, Integer [4] = {0},FileName[1000] = "in.txt";
+    char Str, Dec[1000] = {0}, Integer [5] = {0},FileName[1000] = "in.txt";
 
     FILE *File;
 
