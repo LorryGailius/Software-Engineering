@@ -29,7 +29,7 @@ int main()
     {
         valid = (scanf("%255s", buffer));
 
-        valid = validEmail(buffer);
+        valid = valid && validEmail(buffer);
 
         if (!valid && strcmp(buffer,"0") != 0)
         {
