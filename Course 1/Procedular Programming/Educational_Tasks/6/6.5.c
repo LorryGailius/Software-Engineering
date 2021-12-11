@@ -54,8 +54,11 @@ int main()
        
     } while (strcmp(buffer,"0") != 0);
 
-    fclose(file);
-
+    if(file != NULL)
+    {
+        fclose(file);
+    }
+    
     return 0;
 }
 
