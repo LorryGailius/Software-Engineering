@@ -32,7 +32,7 @@ int main()
     while (1)
     {
         Str = fgetc(File);
-        if(Str != '\n' && Str != ' ' && Str != EOF)
+        if(Str != '\n' && Str != ' ' && Str != EOF && (isdigit(Str) != 0))
         {
             Dec[i] = Str;
             i++;
