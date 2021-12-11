@@ -1,1 +1,32 @@
-dir/Computer-Science/Course 1/Procedular Programming/Educational_Tasks/15
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+/Course 1/Procedular Programming/Educational_Tasks/**/*.exe
+*.out
+*.app
