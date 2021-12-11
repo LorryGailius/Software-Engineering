@@ -58,7 +58,7 @@ int main()
     {
         fclose(file);
     }
-    
+
     return 0;
 }
 
@@ -89,11 +89,11 @@ int validEmail(char *email)
             for (int i = etaAddress; i <= (emailLen - 1); ++i)
             {
                 // Check if dot symbol has other characters before and after it
-                if (email[i] == '.' && i < (emailLen - 1))
+                if (email[i] == '.')
                 {
                     dotCount++;
                     // False - if there are no other characters before and after dots
-                    if (email[i + 1] == '@' || email[i - 1] == '@')
+                    if (email[i + 1] == '@' || email[i - 1] == '@' || i == (emailLen - 1))
                     {
                         return 0;
                     }
