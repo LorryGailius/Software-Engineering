@@ -4,7 +4,7 @@
 #include <string.h>
 
 int validEmail(char *email);
-char* printHandle(char *email);
+char* getHandle(char *email);
 
 int main()
 {
@@ -40,7 +40,7 @@ int main()
 
         if(valid && strcmp(buffer,"0") != 0)        
         {
-            char *handle = printHandle(buffer);
+            char *handle = getHandle(buffer);
 
             printf("The handle is: %s\n", handle);
 
@@ -62,71 +62,56 @@ int main()
 
 int validEmail(char *email)
 {
-    int valid = 0, etaCount = 0, addres, dotNum = 0;
-    //check if only one @ symbol
-    for (int i = 0; i < strlen(email); ++i)
+    int etaCount = 0, etaAddress, emailLen = strlen(email), dotCount = 0;
+    // Check if only one '@' symbol
+    for (int i = 0; i < emailLen; ++i)
     {
         if (email[i] == '@')
-        {
+        {   
             etaCount++;
-            addres = email[i];
+            etaAddress = i;
         }
     }
 
-    if (etaCount == 1)
+    // Check if @ symbol has other characters before and after it
+    if (etaCount == 1 && etaAddress < (emailLen - 1) && etaAddress > 0)
     {
-        //check if there are symbols between '.' and '@'
-        for (int i = 0; i < strlen(email); ++i)
+        // False - if characters before and after are dots
+        if (email[etaAddress - 1] == '.' || email[etaAddress + 1] == '.')
         {
-            if (email[i] == '.' && email[i] < addres)
-            {
-                for (int j = i; j < strlen(email); ++j)
-                {
-                    if (email[j] == '@')
-                    {
-                        if ((j-i) > 1)
-                        {
-                            valid = 1;
-                        }
-                        else
-                        {
-                            valid = 0;
-                        }
-                        break;
-                    }
-                }
-            }
+            return 0;
         }
-        //Check if there is a '.' after @ symbol
-        if(valid)
+        else
         {
-            int flag = 0;
-            for (int i = 0, j = 0; i < strlen(email); ++i)
+            for (int i = etaAddress; i <= (emailLen - 1); ++i)
             {
-                if (email[i] == '@')
+                // Check if dot symbol has other characters before and after it
+                if (email[i] == '.' && i < (emailLen - 1))
                 {
-                flag = 1;
-                }
-
-                if (flag)
-                {
-                    if (email[i] == '.')
+                    dotCount++;
+                    // False - if there are no other characters before and after dots
+                    if (email[i + 1] == '@' || email[i - 1] == '@')
                     {
-                        dotNum++;
+                        return 0;
                     }
                 }
             }
-            if (dotNum == 0)
+            // False - if there are no dots after '@' symbol
+            if (!dotCount)
             {
-                valid = 0;
+                return 0;
             }
         }
     }
-
-    return valid;
+    else
+    {
+        return 0;
+    }
+    
+    return 1;
 };
 
-char* printHandle(char *email)
+char* getHandle(char *email)
 {
     int emailLen = strlen(email);
     char *handle = (char *)calloc(256,sizeof(char));
