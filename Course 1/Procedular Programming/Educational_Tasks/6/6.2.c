@@ -4,8 +4,8 @@
 
 int main()
 {
-    int Num = 0, Num2 = 0, Length = 0, Valid = 1;
-    char Ch, Dec[1000] = { 0 }, FileName[256] = "in.txt";
+    int Num = 0, Length = 0, Valid = 1;
+    char Str, Dec[1000] = {0}, Integer [4] = {0},FileName[1000] = "in.txt";
 
     FILE *File;
 
@@ -15,15 +15,9 @@ int main()
 
         fscanf(File, "%d", &Num);
 
-        Ch = fgetc(File);
+        Str = fgetc(File);
 
-        Valid = ((Num >= 10) && (Num <= 1000) && (Ch == ',') && (File));
-		
-		Valid = Valid && fscanf(File, "%d", &Num2);
-		
-		Ch = fgetc(File);
-		
-		Valid = Valid && (Ch == EOF);
+        Valid = ((Num >= 10) && (Num <= 1000) && (Str == ','));
 
         if (!Valid)
         {
@@ -33,10 +27,26 @@ int main()
         }
     } while (!Valid);
 
-    sprintf(Dec,"%d",Num);
-	Length += strlen(Dec);
-	sprintf(Dec,"%d",Num2);
-	Length += strlen(Dec);
+    int i = 0;
+
+    while (1)
+    {
+        Str = fgetc(File);
+        if(Str != '\n' && Str != ' ' && Str != EOF)
+        {
+            Dec[i] = Str;
+            i++;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    Length += strlen(Dec);
+
+    sprintf(Integer, "%d", Num);
+    Length += strlen(Integer);
 
     printf("Faile %s esancio skaiciaus ilgis yra %d\n",FileName, Length);
     fclose(File);
