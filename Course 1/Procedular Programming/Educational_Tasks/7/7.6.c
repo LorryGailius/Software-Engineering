@@ -6,9 +6,6 @@ int showMenu(char *menuTitle, char *menuOptions[], int menuSize, char *inputMsg)
 
 int main()
 {
-    char* O[] = {"Labas", "Viso gero", "Ka"};
-
-    printf("Selection is: %d", showMenu("Belekas", O, 3, "Pasirink tavo mama"));
 
     return 0;
 }
@@ -35,14 +32,15 @@ int showMenu(char *menuTitle, char *menuOptions[], int menuSize, char *inputMsg)
         {
             ch = getchar();
         }
-        
-        valid = valid && (ch == '\n');
 
-        valid = valid && (input > 0 && input < menuSize);
+        valid = valid && (input > 0 && input <= menuSize);
 
-        if (!valid)
+        valid = valid && (isspace(ch));
+
+        if (!valid && (!isspace(ch)))
         {
-            while (ch = getchar() != '\n' && ch != EOF);
+            while(!isspace(getchar()))
+                ;
         }
     } while(!valid);
 
