@@ -34,7 +34,7 @@ int main()
         if (!valid && strcmp(buffer,"0") != 0)
         {
             printf("Email is invalid! Enter a valid email\n");
-            while(getchar() != '\n')
+            while(!isspace(getchar()))
                 ;
         }
 
@@ -44,12 +44,12 @@ int main()
 
             printf("The handle is: %s\n", handle);
 
-            free(handle);
-
             if (flag)
             {
                 fprintf(file,"%s\n",buffer);
             }
+
+            free(handle);
         }
        
     } while (strcmp(buffer,"0") != 0);
