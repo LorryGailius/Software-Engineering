@@ -11,6 +11,11 @@ int main()
 
 int isInRange(int number, int low, int high)
 {
+    if (low > high)
+    {
+        return 0;
+    }
+    
     if (number >= low && number <= high){
         return 1;
     }else{

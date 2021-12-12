@@ -16,8 +16,10 @@ long getFileSize(char *fileName)
     if(file = fopen(fileName,"rb"))
     {
         fseek(file,0,SEEK_END);
+		
+		int ret = ftell(file);
         
-        return ftell(file);
+        return ret;
     }
     else
     {

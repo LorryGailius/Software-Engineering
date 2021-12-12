@@ -12,7 +12,7 @@ int main()
 int getPositiveNumber(char *msg)
 {
     int valid,num;
-    printf("%s",msg);
+    printf("%s: ",msg);
     do
     {
 
@@ -20,7 +20,7 @@ int getPositiveNumber(char *msg)
 
         if(!valid)
         {
-            printf("%s",msg);
+            printf("%s: ",msg);
             scanf("%*[^\n]");
         }
 
