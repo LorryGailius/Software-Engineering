@@ -8,11 +8,6 @@ int *createArray(int size);
 
 int main()
 {
-    int n;
-
-    scanf("%d",&n);
-
-    createArray(n);
 
     return 0;
 }
@@ -23,16 +18,17 @@ void generateArray(int *data, int size, int low, int high)
     for (int i = 0; i < size; i++)
     {
         *(data + i) = (rand() % (high - low + 1)) + low;
-        printf("%d ",*(data + i));
     }
-    printf("\n");
 }
 
 int *createArray(int size)
 {
     int *p = calloc(size,sizeof(int));
 
-    generateArray(p,size,10,20);
-    
+    if (p != NULL)
+    {
+        generateArray(p,size,0,50);
+    }
+
     return p;
 }

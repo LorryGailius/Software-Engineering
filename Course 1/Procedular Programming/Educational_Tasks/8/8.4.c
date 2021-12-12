@@ -31,7 +31,9 @@ int splitData(int arr[], int size, int size1, int **arr1, int **arr2)
 {
     int valid, sizeDiff = size - size1;
 
-    valid = (size > 0) && (size1 > 0);
+    valid = (size > 0) && (size1 > 0) && (sizeDiff > 0);
+
+    valid = valid && (*arr1 == NULL) && (*arr2 == NULL);
     
     if (valid)
     {
@@ -39,7 +41,7 @@ int splitData(int arr[], int size, int size1, int **arr1, int **arr2)
         (*arr2) = calloc(sizeDiff, sizeof(int));
     }
 
-    valid = valid && (*arr1) && *arr2;
+    valid = valid && (*arr1 != NULL) && (*arr2 != NULL);
     
     if (valid)
     {

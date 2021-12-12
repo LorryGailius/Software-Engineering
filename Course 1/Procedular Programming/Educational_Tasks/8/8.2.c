@@ -8,13 +8,13 @@ char* Sort(int argc, char **argv);
 
 int main(int argc, char **argv)
 {
-    
+    Sort(argc, argv);
     return 0;
 }
 
 char* Sort(int argc, char **argv)
 {
-    char *name = calloc(255, sizeof(char));
+    char *name = calloc(256, sizeof(char));
     if(argc == 1)
     {
         printf("No file names given\n");
@@ -23,7 +23,7 @@ char* Sort(int argc, char **argv)
     { 
         for (int i = 1; i <= argc-1; i++)
         {
-            int size = getFileSize(argv[i]), max = 0;
+            long long size = getFileSize(argv[i]), max = 0;
             if (max < size)
             {
                 strcpy(name, argv[i]);
