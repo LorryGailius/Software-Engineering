@@ -1,2 +1,2 @@
-# Computer-Science
-Code i wrote during my courses in Computer Science (Vilnius University)
+# Software-Engineering
+Code i wrote during my courses in Software Engineering (Vilnius University)
