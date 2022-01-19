@@ -1,7 +1,7 @@
 #include <list.h>
 
 // Insert node to the left of specified value
-int node_insert(node_t** head, void * data, size_t size, void * insert, int (*cmp_func)(const void *, const void *, size_t))
+int node_insert(node_t** head, void * data, int size, void * insert, int (*cmp_func)(const void *, const void *, int))
 {
     int retValue = 0;
 	
@@ -58,7 +58,7 @@ int node_insert(node_t** head, void * data, size_t size, void * insert, int (*cm
 }
 
 // Insert node to the front of the list
-int node_pushf(node_t** head, void * data, size_t size)
+int node_pushf(node_t** head, void * data, int size)
 {
     int retValue = 0;
     
@@ -79,7 +79,7 @@ int node_pushf(node_t** head, void * data, size_t size)
 }
 
 // Insert node to back of the list
-int node_pushb(node_t** head, void * data, size_t size)
+int node_pushb(node_t** head, void * data, int size)
 {
     int retValue = 0;
 
