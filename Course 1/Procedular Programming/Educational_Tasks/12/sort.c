@@ -1,6 +1,6 @@
 #include <sort.h>
 
-void fill_array(int *array, int size, int low, int high)
+void fill_array(long *array, long size, long low, long high)
 {
     for (int i = 0; i < size; i++)
     {
@@ -8,7 +8,7 @@ void fill_array(int *array, int size, int low, int high)
     }
 }
 
-void print_array(int *array, int size)
+void print_array(long *array, long size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -17,18 +17,18 @@ void print_array(int *array, int size)
     puts("");
 }
 
-void check_sort(int maxSize, sort_func_t func)
+void check_sort(long maxSize, sort_func_t func)
 {   
-    int size = 10000, flag = 1, j = 1;
+    int size = 100000, flag = 1, j = 1;
     float time = 0;
     for(int j = 1; j <= maxSize; j++)
     {
         int array[size];
-        fill_array(array, size, (0), size);
+        fill_array(array, size, -size, size);
         clock_t tic = clock();
         func(array, size);
         clock_t toc = clock();
-        time += ((double)(toc - tic) / CLOCKS_PER_SEC);
+        time += ((float)(toc - tic) / CLOCKS_PER_SEC);
 
         for (int i = 0; i < size - 1; i++)
         {
@@ -47,10 +47,10 @@ void check_sort(int maxSize, sort_func_t func)
     }
     if (flag == 1)
     {
-        printf("%d arrays with %d elements were sorted correctly!\n", maxSize, size);
+        printf("%d arrays with %d random elements were sorted correctly!\n", maxSize, size);
     }
 
-    printf("Average time for sort was %lf", (time/(float)maxSize));
+    printf("Average time for sorting algorithm was %lf", (time/(float)(maxSize)));
 
 }
 
