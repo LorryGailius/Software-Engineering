@@ -12,9 +12,9 @@ void insert(queue_t *queue, data_t data, int priority, int *error)
 
     if (newNode != NULL)
     {
-        newNode->data.size = data.size;
-        newNode->data.data = malloc(data.size);
-        memcpy(newNode->data.data, data.data, data.size);
+        newNode->nodeData.size = data.size;
+        newNode->nodeData.data = malloc(data.size);
+        memcpy(newNode->nodeData.data, data.data, data.size);
         newNode->priority = priority;
 
         newNode->pNextNode = NULL;
@@ -56,13 +56,11 @@ void qcpy(queue_t *destination, queue_t source, int *error)
     }
     else
     {
-        node_t *temp = source.head;
         while (source.head != NULL)
         {
-            insert(destination, source.head->data, source.head->priority, error);
+            insert(destination, source.head->nodeData, source.head->priority, error);
             source.head = source.head->pNextNode;
         }
-        source.head = temp;
     }
 }
 
@@ -77,24 +75,19 @@ queue_t join(queue_t queue1, queue_t queue2, int *error)
     }
     else
     {
-        node_t *temp1 = queue1.head;
-        node_t *temp2 = queue2.head;
         while (queue1.head != NULL)
         {
-            insert(&retValue, queue1.head->data, queue1.head->priority, error);
+            insert(&retValue, queue1.head->nodeData, queue1.head->priority, error);
             queue1.head = queue1.head->pNextNode;
         }
 
         while (queue2.head != NULL)
         {
-            insert(&retValue, queue2.head->data, queue2.head->priority, error);
+            insert(&retValue, queue2.head->nodeData, queue2.head->priority, error);
             queue2.head = queue2.head->pNextNode;
         }
     }
-    
-
-    
-
+    return retValue;
 }
 
 queue_t create_queue(int *error)
@@ -112,8 +105,8 @@ data_t pop(queue_t *queue, int *error)
     {
         node_t *temp = ((*queue).head);
         ((*queue).head) = ((*queue).head)->pNextNode;
-        retValue.data = temp->data.data;
-        free(temp->data.data);
+        retValue.data = temp->nodeData.data;
+        free(temp->nodeData.data);
         free(temp);
     }
     else
@@ -148,14 +141,14 @@ void clear_queue(queue_t *queue)
 
         headNode = headNode->pNextNode;
 
-        free(tempNode->data.data);
+        free(tempNode->nodeData.data);
         free(tempNode);
     }
     
     (*queue).head = NULL;
 }
 
-void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *error, FILE *fs)
+void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *error, int printPriorities, FILE *fs)
 {
     if (queue.head == NULL)
     {
@@ -166,7 +159,8 @@ void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *er
         fputs("",fs);
         while (queue.head)
         {
-            prnt_func((queue.head)->data.data, fs);
+            if(printPriorities) { fprintf(fs, "Priority : %d | ", queue.head->priority); }
+            prnt_func((queue.head)->nodeData.data, fs);
             queue.head = (queue.head)->pNextNode;
         }
     }
@@ -186,6 +180,12 @@ void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *er
 void print_int(const void *a, FILE *fs)
 {
     fprintf(fs, "%d", *(int*)a);
+    fputs("\n", fs);
+}
+
+void print_str(const void *a, FILE *fs)
+{
+    fprintf(fs, "%s", (char*)a);
     fputs("\n", fs);
 }
 

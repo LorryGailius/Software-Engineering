@@ -14,7 +14,7 @@ typedef struct data_t
 
 typedef struct node_t
 {
-    data_t data;
+    data_t nodeData;
     struct node_t *pNextNode;
     int priority;
 }node_t;
@@ -95,10 +95,11 @@ void clear_queue(queue_t *queue);
 @param Queue This is the source of data to be printed from, type-casted to a struct of queue_t.
 @param Print_Function This is the function spcified for printing the specific data type of data.
 @param Error This is an error code pointer, casted into an integer.
+@param Priorities A boolean type integer. True - function prints element priority, False - only prints out element.
 @param Stream This is the pointer to a FILE object that identifies the stream where the queue is to be written.
 @return Prints out a queue to the specified FILE stream
 */
-void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *error, FILE *fs);
+void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *error, int printPriorities, FILE *fs);
 
 /*
 @function print_int
@@ -108,13 +109,20 @@ void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *er
 */
 void print_int(const void *a, FILE *fs);
 
+/*
+@function print_str
+@param Value This is the string to be written, casted to a void*.
+@param Stream This is the pointer to a FILE object that identifies the stream where the value is to be written.
+@return Prints out a string ( used for the function print_queue() ).
+*/
+void print_str(const void *a, FILE *fs);
 
 /*
 *
 *   Error Codes
 *   1 - The function was given an empty queue
 *   2 - An element could not be inserted into queue
-*   3 - File stream Error
+*   3 - Output/Input File stream Error
 *
 */
 
