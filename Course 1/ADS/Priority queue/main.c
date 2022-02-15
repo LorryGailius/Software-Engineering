@@ -1,12 +1,12 @@
 #include <priority.h>
 
-
-
-
 int main()
 {
-    node_t *head = NULL;
+    data_t data;
+    data.size = sizeof(int);
     int error;
+    queue_t queue1 = create_queue(&error);
+    queue_t queue2 = create_queue(&error);
 
     int a = 1;
     int b = 2;
@@ -14,14 +14,34 @@ int main()
     int d = 4;
     int e = 5;
 
-    node_insert(&head, &a, sizeof(int), 1, &error);
-    node_insert(&head, &b, sizeof(int), 2, &error);
-    node_insert(&head, &c, sizeof(int), 3, &error);
-    node_insert(&head, &d, sizeof(int), 0, &error);
-    node_insert(&head, &e, sizeof(int), 5, &error);
+    data.data = &a;
+    insert(&queue1, data, 1, &error);
+    data.data = &b;
+    insert(&queue1, data, 2, &error);
+    data.data = &c;
+    insert(&queue1, data, 3, &error);
 
-    print_queue(head, print_int, stdout);
+    qcpy(&queue2, queue1, &error);
 
+    printf("Queue 2: \n");
+    print_queue(queue2, print_int, &error, stdout);
+
+    pop(&queue1, &error);
+    pop(&queue1, &error);
+    pop(&queue1, &error);
+
+    printf("Queue 1 after pops: \n");
+    print_queue(queue1, print_int, &error, stdout);
+
+    data.data = &d;
+    insert(&queue1, data, 1, &error);
+    data.data = &e;
+    insert(&queue1, data, 5, &error);
+
+    printf("Queue 1 inserted: \n");
+    print_queue(queue1, print_int, &error, stdout);
+
+    printf("Error Code : %d\n", error);
 
     return 0;
 }
