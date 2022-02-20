@@ -1,5 +1,5 @@
 #include <priority.h>
-#include <assert.h>
+
 int main()
 {
     data_t data;
