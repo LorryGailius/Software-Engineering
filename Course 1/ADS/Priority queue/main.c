@@ -28,22 +28,24 @@ int main()
 
     qcpy(&queue2, queue1, get_length(queue1), &error);
 
-    printf("Queue 2 copied over: \n");
+    printf("Queue 2 copied over from Queue 1: \n");
     print_queue(queue2, print_int, &error, 1, stdout);
 
     clear_queue(&queue1);
+
+    printf("Is queue 1 empty? %s\n", (is_empty(queue1) == 1 ? "True" : "False"));
 
     data.data = &d;
     insert(&queue1, data, 2, &error);
     data.data = &e;
     insert(&queue1, data, 5, &error);
 
-    printf("Queue 1 inserted: \n");
+    printf("Queue 1 after additional insertions: \n");
     print_queue(queue1, print_int, &error, 1,stdout);
 
     queue_t queue3 = join(queue1, queue2, &error);
 
-    printf("Queue 3 joined: \n");
+    printf("Queue 3 joined from Queue 1 and Queue 2: \n");
     print_queue(queue3, print_int, &error, 1, stdout);
 
     clear_queue(&queue1);

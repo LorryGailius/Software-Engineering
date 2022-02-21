@@ -1,35 +1,37 @@
 # Prerequisites
-/Course 1/Procedular Programming/Educational_Tasks/**/*.d
+/Course 1/**/*.d
 
 # Compiled Object files
-/Course 1/Procedular Programming/Educational_Tasks/**/*.slo
-/Course 1/Procedular Programming/Educational_Tasks/**/*.lo
-/Course 1/Procedular Programming/Educational_Tasks/**/*.o
-/Course 1/Procedular Programming/Educational_Tasks/**/*.obj
+/Course 1/**/*.slo
+/Course 1/**/*.lo
+/Course 1/**/*.o
+/Course 1/**/*.obj
 
 # Precompiled Headers
-/Course 1/Procedular Programming/Educational_Tasks/**/*.gch
-/Course 1/Procedular Programming/Educational_Tasks/**/*.pch
+/Course 1/**/*.gch
+/Course 1/**/*.pch
 
 # Compiled Dynamic libraries
-/Course 1/Procedular Programming/Educational_Tasks/**/*.so
-/Course 1/Procedular Programming/Educational_Tasks/**/*.dylib
-/Course 1/Procedular Programming/Educational_Tasks/**/*.dll
+/Course 1/**/*.so
+/Course 1/**/*.dylib
+/Course 1/**/*.dll
 
 # Fortran module files
-/Course 1/Procedular Programming/Educational_Tasks/**/*.mod
-/Course 1/Procedular Programming/Educational_Tasks/**/*.smod
+/Course 1/**/*.mod
+/Course 1/**/*.smod
 
 # Compiled Static libraries
-/Course 1/Procedular Programming/Educational_Tasks/**/*.lai
-/Course 1/Procedular Programming/Educational_Tasks/**/*.la
-/Course 1/Procedular Programming/Educational_Tasks/**/*.a
-/Course 1/Procedular Programming/Educational_Tasks/**/*.lib
+/Course 1/**/*.lai
+/Course 1/**/*.la
+/Course 1/**/*.a
+/Course 1/**/*.lib
 
 # Executables
-/Course 1/Procedular Programming/Educational_Tasks/**/*.exe
-/Course 1/Procedular Programming/Educational_Tasks/**/*.out
-/Course 1/Procedular Programming/Educational_Tasks/**/*.app
+/Course 1/**/*.exe
+/Course 1/**/*.out
+/Course 1/**/*.app
 
 # Output Files
 /Course 1/Procedular Programming/Educational_Tasks/**/*.txt
+
+/Course 1/ADS/Uzd_2
