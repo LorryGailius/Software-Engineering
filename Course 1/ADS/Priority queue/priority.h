@@ -11,7 +11,6 @@ typedef struct data_t
     size_t size;
 }data_t;
 
-
 typedef struct node_t
 {
     data_t nodeData;
@@ -23,7 +22,6 @@ typedef struct queue_t
 {
     node_t *head;
 }queue_t;
-
 
 /*
 @function insert 
@@ -120,11 +118,11 @@ void print_str(const void *a, FILE *fs);
 /*
 *
 *   Error Codes
+*   0 - No errors occured during function
 *   1 - The function was given an empty queue
 *   2 - An element could not be inserted into queue
 *   3 - Output/Input File stream Error
 *
 */
-
 
 #endif
