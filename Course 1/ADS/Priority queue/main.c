@@ -26,7 +26,7 @@ int main()
     printf("Queue 1: \n");
     print_queue(queue1, print_int, &error, 1, stdout);
 
-    qcpy(&queue2, queue1, &error);
+    qcpy(&queue2, queue1, get_length(queue1), &error);
 
     printf("Queue 2 copied over: \n");
     print_queue(queue2, print_int, &error, 1, stdout);

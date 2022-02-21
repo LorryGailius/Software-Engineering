@@ -46,7 +46,7 @@ void insert(queue_t *queue, data_t data, int priority, int *error)
     return;
 }
 
-void qcpy(queue_t *destination, queue_t source, int *error)
+void qcpy(queue_t *destination, queue_t source, int length, int *error)
 {
 
     if (is_empty(source))
@@ -56,10 +56,13 @@ void qcpy(queue_t *destination, queue_t source, int *error)
     }
     else
     {
-        while (source.head != NULL)
+        for (size_t i = 0; i < length; i++)
         {
-            insert(destination, source.head->nodeData, source.head->priority, error);
-            source.head = source.head->pNextNode;
+            if (source.head != NULL)
+            {
+                insert(destination, source.head->nodeData, source.head->priority, error);
+                source.head = source.head->pNextNode;
+            }
         }
     }
 }
@@ -88,6 +91,24 @@ queue_t join(queue_t queue1, queue_t queue2, int *error)
         }
     }
     return retValue;
+}
+
+int get_length(queue_t queue)
+{
+    if (queue.head == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        int retValue = 0;
+        while (queue.head != NULL)
+        {
+            retValue++;
+            queue.head = queue.head->pNextNode;
+        }
+        return retValue;
+    }
 }
 
 queue_t create_queue(int *error)
@@ -175,7 +196,6 @@ void print_queue(queue_t queue, void (*prnt_func)(const void *, FILE *), int *er
         fclose(fs);
     }
 }
-
 
 void print_int(const void *a, FILE *fs)
 {

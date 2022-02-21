@@ -39,10 +39,11 @@ void insert(queue_t *queue, data_t data, int priority, int *error);
 @function qcpy
 @param Destination This is a pointer to the destination queue where the content is to be copied to, type-casted to a struct of queue_t.
 @param Source This is the source of data to be copied from, type-casted to a struct of queue_t.
+@param Length This is the number of elements to be copied to array
 @param Error This is an error code pointer, casted into an integer.
 @return Copies one priority queue to another
 */
-void qcpy(queue_t *destination, queue_t source, int *error);
+void qcpy(queue_t *destination, queue_t source, int length, int *error);
 
 /*
 @function join
@@ -52,6 +53,13 @@ void qcpy(queue_t *destination, queue_t source, int *error);
 @return Returns a priority queue joined from two other priority queues
 */
 queue_t join(queue_t queue1, queue_t queue2, int *error);
+
+/*
+@function get_length
+@param Queue This is the list to be counted, type-casted to a struct of queue_t.
+@return Returns the length of a queue as an integer. Returns 0 if given an empty queue.
+*/
+int get_length(queue_t queue);
 
 /*
 @function is_empty
