@@ -1,3 +1,7 @@
+// Laurynas Gailius PS 2 grupe 1 pogrupis
+// Stud id 554
+
+
 #ifndef PRIORITY_H
 #define PRIORITY_H
 
