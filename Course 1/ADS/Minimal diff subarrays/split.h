@@ -19,6 +19,6 @@
 */
 void split(int *arr, int size, FILE *os, int printArray);
 
-void finMinDiff(int *arr, int size);
+void finMinDiff(int *arr, int size, int printTable);
 
 #endif

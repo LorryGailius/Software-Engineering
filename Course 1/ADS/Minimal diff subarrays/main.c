@@ -18,7 +18,7 @@ int main(int argc, char **argv)
                 size++;
             }
             
-            finMinDiff(arr,size);
+            finMinDiff(arr,size, 1);
         }
     }
     else

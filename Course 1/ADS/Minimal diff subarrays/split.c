@@ -49,7 +49,7 @@ void split(int *arr, int size, FILE *os, int printArray)
     }
 }
 
-void finMinDiff(int *arr, int size)
+void finMinDiff(int *arr, int size, int printTable)
 {
 
     int sum = 0;
@@ -84,19 +84,32 @@ void finMinDiff(int *arr, int size)
         }
     }
 
-    printf("  1 2 3 4 5 6\n");
-
-    for (int i = 1; i < size - 1; i++)
+    if (printTable)
     {
-        printf("%d ", i);
-        for (int j = 1; j <= sum; j++)
+        printf("   ");
+        for (int i = 0; i <= sum; i++)
         {
-            printf("%d ", dp[i][j]);
+            printf("%d ", i);
         }
         puts("");
-    }
-    
 
+        for (int i = 0; i <= size; i++)
+        {
+            printf("%d |", i);
+            for (int j = 0; j <= sum; j++)
+            {
+                if (j / 10 > 0)
+                {
+                    printf(" %d ", dp[i][j]);
+                }
+                else
+                {
+                    printf("%d ", dp[i][j]);
+                }
+            }
+            puts("");
+        }
+    }
     
     int diff = INT_MAX;
 
@@ -109,5 +122,11 @@ void finMinDiff(int *arr, int size)
         }
     }
     
-    printf("%d", diff);
+    printf("Minimum difference is: %d", diff);
+
+    
+
+
+
+
 }
