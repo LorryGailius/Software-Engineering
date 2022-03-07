@@ -5,20 +5,20 @@ int main(int argc, char **argv)
 
     if (argc == 2)
     {
-        int *arr = calloc(MAX_ARR_SIZE, sizeof(int));
         int size = 0;
 
         FILE *is = fopen(argv[1], "r");
 
         if (is != NULL)
         {
-            while (size <= MAX_ARR_SIZE && !feof(is))
+            fscanf(is, "%d", &size);
+            int *arr = calloc(size, sizeof(int));
+            for (size_t i = 0; i < size; i++)
             {
-                fscanf(is, "%d ", &arr[size]);
-                size++;
+                fscanf(is, "%d ", &arr[i]);
             }
             
-            finMinDiff(arr,size, 1);
+            get_variations(3, 4);
         }
     }
     else

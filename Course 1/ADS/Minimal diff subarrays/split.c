@@ -1,132 +1,129 @@
 #include <split.h>
-#include <sort.h>
 
-void split(int *arr, int size, FILE *os, int printArray)
+void print_array(int *arr, size_t n, FILE *os) {
+    if(arr == NULL) return;
+    putc('[', os);
+    for(size_t i = 0; i < n; ++i) {
+        fprintf(os, "%d", arr[i]);
+        if(i != n - 1) {
+            fprintf(os, ", ");
+        }
+    }
+    fprintf(os, "]\n");
+}
+
+int get_array_sum(int *arr, size_t n)
 {
-    int sum = 0;
-
-    int prefix = 0;
-    int minDiff = INT_MAX;
-    int index;
-
-    for (int i = 0; i < size; i++)
+    int ret = 0;
+    for (size_t i = 0; i < n; i++)
     {
-        sum += arr[i];
+        ret += arr[i];
     }
     
-    for (int i = 0; i < size - 1; i++)
-    {
-        prefix += arr[i];
-        int diff = abs(prefix - (sum - prefix));
+    return ret;
+}
 
-        if (diff < minDiff)
-        {
-            minDiff = diff;
-            index = i;
-        }
-    }
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    if(printArray > 0)
+size_t factorial(size_t n)
+{
+    int f = 1;
+    for (size_t i = 1; i <= n; i++)
     {
-        for (int i = 0; i <= index; i++)
-        {
-            fprintf(os, "%d ", arr[i]);
-        }
-        puts("");
-        for (int i = index + 1; i < size; i++)
-        {
-            fprintf(os, "%d ", arr[i]);
-        }
+        f = f * i;
     }
-    else
-    {
-        fprintf(os, "Minimum difference is: %d\n", minDiff);
-    }
+    return f;
+}
 
-    if (os != stdout)
+size_t nCr(size_t n, size_t r)
+{
+    int ret = (factorial(n)) / (factorial(r) * factorial(n - r));
+    return ret;
+}
+
+void reverse(int *first, int *last)
+{
+    if(first == last) return;
+    for (--last; first < last; first++, --last)
     {
-        fclose(os);
+        swap(first, last);
     }
 }
 
-void finMinDiff(int *arr, int size, int printTable)
+int prev_permuation(int *first, int *last)
+{
+    if (first == last) return 0;
+    int *i = last;
+    if (first == --i) return 0;
+ 
+    while (1) 
+    {
+        int *i1, *i2;
+ 
+        i1 = i;
+        if (*i1 < *--i) {
+            i2 = last;
+            while (!(*--i2 < *i))
+                ;
+            swap(i, i2);
+            reverse(i1, last);
+            return 1;
+        }
+        if (i == first) {
+            reverse(first, last);
+            return 0;
+        }
+    }
+}
+
+int **get_variations(size_t number_of_elements_to_pick, size_t number_of_elements)
 {
 
-    int sum = 0;
+    if(number_of_elements < number_of_elements_to_pick){return NULL;}
 
-    for (int i = 0; i < size; i++)
+    int *pick_element = (int *)calloc(number_of_elements, sizeof(int));
+    for (size_t i = 0; i < number_of_elements_to_pick; i++)
     {
-        sum += arr[i];
+        pick_element[i] = 1;
     }
-    
-    int dp[size + 1][sum + 1];
+    int len = nCr(number_of_elements,number_of_elements_to_pick);
 
-    for (int i = 0; i <= size; i++)
+    int **combinations = (int **)calloc(len, sizeof(int*));
+
+    for (size_t i = 0; i < len; i++)
     {
-        dp[i][0] = 1;
+        combinations[i] = (int *)calloc(number_of_elements_to_pick, sizeof(int));
     }
 
-    for (int i = 1; i <= sum; i++)
+    size_t j = 0;
+    do
     {
-        dp[0][i] = 0;
-    }
-    
-    for (int i = 1; i <= size; i++)
-    {
-        for (int j = 1; j <= sum; j++)
+        size_t count = 0;
+        for (size_t i = 0; i < number_of_elements; i++)
         {
-            dp[i][j] = dp[i - 1][j];
-           
-            if (arr[i - 1] <= j)
+            if (pick_element[i])
             {
-                dp[i][j] = dp[i - 1][j - arr[i - 1]];
-            }
+                combinations[j][count++] = i;
+            } 
         }
+        
+        print_array(combinations[j], number_of_elements_to_pick, stdout);
+        fflush(stdout);
+        j++;
     }
+    while (prev_permuation(pick_element, pick_element + (number_of_elements)));
 
-    if (printTable)
-    {
-        printf("   ");
-        for (int i = 0; i <= sum; i++)
-        {
-            printf("%d ", i);
-        }
-        puts("");
+    return combinations;
+}
 
-        for (int i = 0; i <= size; i++)
-        {
-            printf("%d |", i);
-            for (int j = 0; j <= sum; j++)
-            {
-                if (j / 10 > 0)
-                {
-                    printf(" %d ", dp[i][j]);
-                }
-                else
-                {
-                    printf("%d ", dp[i][j]);
-                }
-            }
-            puts("");
-        }
-    }
-    
-    int diff = INT_MAX;
-
-    for (int i = sum / 2; i >= 0; i--)
-    {
-        if (dp[size][i])
-        {
-            diff = sum - 2 * i;
-            break;
-        }
-    }
-    
-    printf("Minimum difference is: %d", diff);
-
-    
-
-
+void partition_array(int *arr, int *part1, int *part2, size_t n, size_t n1, size_t n2)
+{
 
 
 }
+
