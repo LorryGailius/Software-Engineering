@@ -18,7 +18,7 @@ int main(int argc, char **argv)
                 fscanf(is, "%d ", &arr[i]);
             }
             
-            get_variations(3, 4);
+            find_min_diff(arr, size);
         }
     }
     else

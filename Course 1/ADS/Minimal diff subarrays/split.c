@@ -127,3 +127,55 @@ void partition_array(int *arr, int *part1, int *part2, size_t n, size_t n1, size
 
 }
 
+int find_min_diff(int *arr, int n)
+{
+    int sumOfArr = 0;
+    for (size_t i = 0; i < n; i++)
+    {
+        sumOfArr += arr[i];
+    }
+    
+    int sum = sumOfArr/2;
+
+    int dp[n + 1][sum + 1];
+
+    for (size_t i = 0; i <= n; i++)
+    {
+        dp[i][0] = 1;
+    }
+
+    for (size_t i = 1; i <= sum; i++)
+    {
+        dp[0][i] = 0;
+    }
+    
+    for (size_t i = 1; i <= n; i++)
+    {
+        for (size_t j = 1; j <= sum; j++)
+        {
+            dp[i][j] = dp[i - 1][j];
+
+            if (arr[i - 1] <= j)
+            {
+                dp[i][j] |= dp[i - 1][j - arr[i - 1]];
+            }
+        }
+    }
+
+    int minDiff = INT_MAX;
+
+    for (size_t i = sum / 2; i >= 0; i--)
+    {
+        if (dp[n][i])
+        {
+            minDiff = sum - (2 * i);
+            break;
+        }
+    }
+    
+    printf("Minimum difference is : %d", minDiff);
+
+    return minDiff;
+
+}
+
