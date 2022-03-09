@@ -164,11 +164,11 @@ int find_min_diff(int *arr, int n)
 
     int minDiff = INT_MAX;
 
-    for (size_t i = sum / 2; i >= 0; i--)
+    for (size_t i = sum; i >= 0; i--)
     {
         if (dp[n][i])
         {
-            minDiff = sum - (2 * i);
+            minDiff = sumOfArr - (2 * i);
             break;
         }
     }
