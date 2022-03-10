@@ -24,7 +24,6 @@ int main(int argc, char **argv)
             print_array(a2, b, stdout);
 
             printf("Difference is %d",abs(get_array_sum(a1, a) - get_array_sum(a2, b)));
-
         }
     }
     else

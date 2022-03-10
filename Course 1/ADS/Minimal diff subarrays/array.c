@@ -48,15 +48,15 @@ int* get_sub_array_include(
 /// Calculates the sum of the array
 /// Time complexity: O(n)
 /// @param first pointer to the first element in an array
-/// @param last pointer to the last element in an array
+/// @param end pointer to the end element in an array
 /// @return resulting sum
 size_t get_array_sum(
     const int *const first, 
-    const int *const last
+    const int *const end
 ) {
-    assert(first <= last);
+    assert(first <= end);
     size_t sum = 0;
-    for(int *it = (int*)first; it != last; ++it) {
+    for(int *it = (int*)first; it != end; ++it) {
         sum += *it;
     }
     return sum;
@@ -146,13 +146,13 @@ size_t nCr(size_t n, size_t r) {
 /// Reverses array of integers
 /// Time complexity: O(n)
 /// @param first pointer to the first element
-/// @param last pointer to the element after the last element (weird)
+/// @param end pointer to the element after the end element (weird)
 /// @return nothing
-void reverse_int_array(int *first, int *last) {  
-    if(first == last)
+void reverse_int_array(int *first, int *end) {  
+    if(first == end)
         return;
-    for(--last; first < last; (void)++first, --last) {
-        swap(first, last);
+    for(--end; first < end; (void)++first, --end) {
+        swap(first, end);
     }
 }
 
@@ -160,26 +160,26 @@ void reverse_int_array(int *first, int *last) {
 /// Time complexity: O(n) 
 /// source: https://stackoverflow.com/questions/46485506/next-permutation-time-complexity-in-big-o-notation
 /// @param first pointer to the first element
-/// @param last pointer to the element after the last element (weird)
+/// @param end pointer to the element after the end element (weird)
 /// @return 0 if no such permutation exists, 1 otherwise
-uint8_t prev_permutation(int *first, int *last) {
-    if (first == last) return 0;
-    int *i = last;
+uint8_t prev_permutation(int *first, int *end) {
+    if (first == end) return 0;
+    int *i = end;
     if (first == --i) return 0;
  
     while (1) {
         int *i1, *i2;
         i1 = i;
         if (*i1 < *--i) {
-            i2 = last;
+            i2 = end;
             while (!(*--i2 < *i))
                 ;
             swap(i, i2);
-            reverse_int_array(i1, last);
+            reverse_int_array(i1, end);
             return 1;
         }
         if (i == first) {
-            reverse_int_array(first, last); //
+            reverse_int_array(first, end); //
             return 0;
         }
     }

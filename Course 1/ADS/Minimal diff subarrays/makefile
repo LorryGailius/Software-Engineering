@@ -1,4 +1,4 @@
 .DEFAULT_GOAL:=main
 
 main:
-	gcc *.c -I.
+	gcc main.c split.c -I.
