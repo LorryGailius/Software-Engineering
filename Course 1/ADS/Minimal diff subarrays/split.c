@@ -223,11 +223,7 @@ int prev_permuation(int *start, int *end)
 */
 int find_min_diff(const int *array, int n)
 {
-    int sumOfArr = 0;
-    for (size_t i = 0; i < n; i++)
-    {
-        sumOfArr += array[i];
-    }
+    int sumOfArr = get_array_sum(array, n);
     
     int sum = sumOfArr/2;
 
@@ -385,6 +381,7 @@ void partition_array(int *array, size_t n, int **array1, size_t * n1, int **arra
     _quick_sort(array, 0, n - 1); // Sort the array in reverse order
     int minDiff = find_min_diff(array, n); // Find minimum subset difference possible
     int sumpt = aprox_sollution(array,n,array1,n1,array2,n2); // 'greedy' approach subset difference found
+    printf("Minimum difference is: %d | Greddy approach found: %d\n", minDiff, sumpt);
     if (sumpt != minDiff)
     {
         // Initiate brute force solution:

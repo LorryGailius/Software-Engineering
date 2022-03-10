@@ -2,7 +2,6 @@
 
 int main(int argc, char **argv)
 {
-
     if (argc == 2)
     {
         int size = 0;
@@ -17,6 +16,7 @@ int main(int argc, char **argv)
             {
                 fscanf(is, "%d ", &array[i]);
             }
+
             int *a1, *a2, a = 0, b = 0;
             partition_array(array, size, &a1, &a, &a2, &b);
 
@@ -30,7 +30,6 @@ int main(int argc, char **argv)
     {
         puts("No data file given!");
     }
-
 
     return 0;
 }
