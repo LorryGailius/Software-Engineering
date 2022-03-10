@@ -8,9 +8,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
+#include <assert.h>
+#include <stdint.h>
 
-int **get_variations(size_t number_of_elements_to_pick, size_t number_of_elements);
+void partition_array(int *array, size_t n, int **array1, size_t * n1, int **array2, size_t * n2);
 
-int find_min_diff(int *arr, int n);
+void print_array(int *array, size_t n, FILE *os);
+
+int get_array_sum(int *array, size_t n);
 
 #endif
