@@ -1,4 +1,4 @@
-#include <split.h>
+#include <partition.h>
 
 int main(int argc, char **argv)
 {

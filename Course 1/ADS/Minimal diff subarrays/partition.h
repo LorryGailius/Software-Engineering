@@ -1,8 +1,8 @@
 // Laurynas Gailius PS 2 grupe 1 pogrupis
 // Stud id 554
 
-#ifndef SPLIT_H
-#define SPLIT_H
+#ifndef PARTITION_H
+#define PARTITION_H
 
 #include <stdlib.h>
 #include <stdio.h>

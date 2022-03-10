@@ -1,4 +1,4 @@
-#include <split.h>
+#include <partition.h>
 
 /*
     Create a sub-array given the indices of elements to exclude
