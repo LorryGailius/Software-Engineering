@@ -105,7 +105,7 @@ int main()
             // Print out the nearest value
             if (distance1 == distance2)
             {
-                printf("%lld is not prime, nearest prime numbers are : %d ir %d\n", num, num1, num2);
+                printf("%lld is not prime, nearest prime numbers are : %d and %d\n", num, num1, num2);
             }
             else if (distance1 < distance2 && num != 1) //The number 1 is not considered PRIME
             {
