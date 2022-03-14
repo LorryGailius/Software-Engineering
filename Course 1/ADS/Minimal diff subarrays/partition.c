@@ -267,7 +267,7 @@ int find_min_diff(const int *array, int n)
 }
 
 /*
-    Greedy approach to partition an array into two subsets, that their sum difference is as small as possible
+    'Greedy' approach to partition an array into two subsets, that their sum difference is as small as possible
     Used in 'partition_array' in order to minimize time complexity if possible
     Changes the values
     Time complexity: O(n)
@@ -277,7 +277,7 @@ int find_min_diff(const int *array, int n)
     @param n1 pointer to number of elements in 'array1'
     @param array2 pointer to second subset array
     @param n2 pointer to number of elements in 'array2'
-    @return minimum difference found by the greedy approach. 'array1' & 'array2' must be empty in order to be filled!
+    @return minimum difference found by the 'greedy' approach. 'array1' & 'array2' must be empty in order to be filled!
 */
 int aprox_sollution(const int *array, size_t n, int **array1, size_t *n1, int **array2, size_t *n2)
 {
@@ -367,7 +367,7 @@ int **get_variations(size_t n, size_t r)
     Uses 'greedy' aproximate approach, else brute force
     Time complexity: 
     best : O(n * sum)
-    worst : O(???)
+    worst : O(n ^ 2 * n!)
     @param array array to partition into two subsets
     @param n number of elements in 'array'
     @param array1 pointer to first subset array
@@ -381,7 +381,7 @@ void partition_array(int *array, size_t n, int **array1, size_t * n1, int **arra
     _quick_sort(array, 0, n - 1); // Sort the array in reverse order
     int minDiff = find_min_diff(array, n); // Find minimum subset difference possible
     int sumpt = aprox_sollution(array,n,array1,n1,array2,n2); // 'greedy' approach subset difference found
-    printf("Minimum difference is: %d | Greddy approach found: %d\n", minDiff, sumpt);
+    printf("Minimum difference is: %d | Greedy approach found: %d\n", minDiff, sumpt);
     if (sumpt != minDiff)
     {
         // Initiate brute force solution:
@@ -392,7 +392,7 @@ void partition_array(int *array, size_t n, int **array1, size_t * n1, int **arra
         const size_t S = get_array_sum(array, n);
         
         // When no exact solution exists pick one that minimises subset difference
-        int best_solution[n], best_indices[n];
+        int best_indices[n];
         size_t min_diff = INT32_MAX, best_idx_count = 0;
 
         // Iterate through possible array sizes
@@ -445,7 +445,7 @@ void partition_array(int *array, size_t n, int **array1, size_t * n1, int **arra
             free(indices);
         }
 
-    // construct arrays with the smallest sum difference
+    // Construct arrays with the smallest sum difference
     *n1 = best_idx_count;
     *array1 = get_sub_array_include(array, n, best_indices, best_idx_count); 
     *n2 = n - best_idx_count;
