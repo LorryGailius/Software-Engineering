@@ -144,7 +144,7 @@ int get_array_sum(const int *array, size_t n)
 */
 size_t factorial(size_t n)
 {
-    int f = 1;
+    size_t f = 1;
     for (size_t i = 1; i <= n; i++)
     {
         f = f * i;
@@ -154,15 +154,20 @@ size_t factorial(size_t n)
 
 /*
     Calculates n choose r
-    Time complexity: O(n)
+    Time complexity: O(n)s
     @param n number of elements
     @param r number of elements to pick
     @result number of possible variations
 */
-size_t nCr(size_t n, size_t r)
+uint64_t nCr(int n, int r)
 {
-    int ret = (factorial(n)) / (factorial(r) * factorial(n - r));
-    return ret;
+    int sum=1,t=1;
+    while(N!=t)
+    {
+    sum=sum*(N/t);
+    N--; t++;
+    }
+    return sum;
 }
 
 /*
@@ -396,17 +401,17 @@ void partition_array(int *array, size_t n, int **array1, size_t * n1, int **arra
         size_t min_diff = INT32_MAX, best_idx_count = 0;
 
         // Iterate through possible array sizes
-        for(size_t i = 1; i <= n / 2; ++i) 
+        for(size_t i = n / 4; i <= n / 2; ++i) 
         {
             // Sizes of left & right subarrays
             size_t N1 = i, N2 = n - i;
 
             // Number of ways to distribute the elements.
-            const size_t P = nCr(n, N1); 
-
+            printf("N : %d | R : %d\n", n, N1);
+            const uint64_t P = nCr(n, N1); 
+            printf("%d", P);
             // Get all combinations of indices such that sums of subarrays would be different  
             int **indices = get_variations(N1, n);  
-            
             for(size_t j = 0; j < P; ++j) 
             {
                 int *left_arr = get_sub_array_include(array, n, indices[j], N1); // needs to be manually freed
